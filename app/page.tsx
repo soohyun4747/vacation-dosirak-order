@@ -10,17 +10,17 @@ import { mockUsers } from '../src/mock/users';
 
 export default function Home() {
 	const router = useRouter();
-	const defaultUser = useMemo(() => mockUsers[0], []);
-	const [email, setEmail] = useState(defaultUser?.email ?? '');
-	const [password, setPassword] = useState(defaultUser?.password ?? '');
-	const [error, setError] = useState('');
+        const defaultUser = useMemo(() => mockUsers[0], []);
+        const [userId, setUserId] = useState(defaultUser?.id ?? '');
+        const [password, setPassword] = useState(defaultUser?.password ?? '');
+        const [error, setError] = useState('');
 
-	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-		event.preventDefault();
-		const matched = mockUsers.find(
-			(user) =>
-				user.email === email.trim() && user.password === password.trim()
-		);
+        const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+                event.preventDefault();
+                const matched = mockUsers.find(
+                        (user) =>
+                                user.id === userId.trim() && user.password === password.trim()
+                );
 
 		if (matched) {
 			setError('');
@@ -28,10 +28,10 @@ export default function Home() {
 			return;
 		}
 
-		setError(
-			'이메일 혹은 비밀번호가 올바르지 않습니다. 아래의 테스트 계정 정보를 확인해주세요.'
-		);
-	};
+                setError(
+                        '아이디 혹은 비밀번호가 올바르지 않습니다. 아래의 테스트 계정 정보를 확인해주세요.'
+                );
+        };
 
 	return (
 		<div className='flex flex-col justify-center items-center gap-6'>
@@ -41,22 +41,22 @@ export default function Home() {
 				<form
 					onSubmit={handleSubmit}
 					className='space-y-4'>
-					<div className='space-y-2'>
-						<label
-							className='text-sm font-medium text-gray-800'
-							htmlFor='email'>
-							이메일
-						</label>
-						<Input
-							id='email'
-							name='email'
-							value={email}
-							onChange={(event) => setEmail(event.target.value)}
-							placeholder='mock 계정 이메일'
-							type='email'
-							required
-						/>
-					</div>
+                                        <div className='space-y-2'>
+                                                <label
+                                                        className='text-sm font-medium text-gray-800'
+                                                        htmlFor='userId'>
+                                                        아이디
+                                                </label>
+                                                <Input
+                                                        id='userId'
+                                                        name='userId'
+                                                        value={userId}
+                                                        onChange={(event) => setUserId(event.target.value)}
+                                                        placeholder='mock 계정 아이디'
+                                                        type='text'
+                                                        required
+                                                />
+                                        </div>
 
 					<div className='space-y-2'>
 						<label
@@ -79,13 +79,32 @@ export default function Home() {
 
 					{error && <p className='text-sm text-red-600'>{error}</p>}
 
-					<Button
-						type='submit'
-						className='w-full'>
-						로그인하고 이동하기
-					</Button>
-				</form>
-			</Card>
+                                        <div className='space-y-2'>
+                                                <Button
+                                                        type='submit'
+                                                        className='w-full'>
+                                                        로그인하고 이동하기
+                                                </Button>
+
+                                                <div className='flex gap-2'>
+                                                        <Button
+                                                                type='button'
+                                                                variant='secondary'
+                                                                className='w-1/2'
+                                                                onClick={() => router.push('/customer/signup')}>
+                                                                회원가입
+                                                        </Button>
+                                                        <Button
+                                                                type='button'
+                                                                variant='ghost'
+                                                                className='w-1/2'
+                                                                onClick={() => router.push('/forgot-password')}>
+                                                                비밀번호 찾기
+                                                        </Button>
+                                                </div>
+                                        </div>
+                                </form>
+                        </Card>
 		</div>
 	);
 }
