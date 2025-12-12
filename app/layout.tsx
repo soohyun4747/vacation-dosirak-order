@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "주문/배송 시스템",
+  title: "부산 시청 도시락 주문",
   description: "고객-관리자-기사 주문 배송 관리 UI",
 };
 
