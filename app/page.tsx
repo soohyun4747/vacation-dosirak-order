@@ -34,13 +34,13 @@ export default function Home() {
 
 	return (
 		<div className='flex flex-col justify-center items-center gap-6'>
-			<Card className='w-full'>
+			<Card className='w-full flex flex-col items-center md:pt-[110px] md:h-[560px]'>
 				<p className='w-full text-center mb-4 text-lg font-semibold text-gray-600'>
 					로그인
 				</p>
 				<form
 					onSubmit={handleSubmit}
-					className='space-y-4'>
+					className='space-y-4 max-w-[360px] w-full'>
 					<div className='space-y-2'>
 						<label
 							className='text-sm font-medium text-gray-800'

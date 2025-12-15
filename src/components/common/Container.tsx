@@ -31,7 +31,7 @@ export const Container = ({ children }: { children: ReactNode }) => {
 						부산 공공기관 도시락
 					</p>
 					{showLogout && (
-						<div className='absolute right-4 sm:right-6 lg:right-8'>
+						<div className='absolute right-4 sm:right-6 lg:right-8 cursor-pointer'>
 							<p className='text-sm text-amber-600' onClick={handleLogout}>로그아웃</p>
 						</div>
 					)}
