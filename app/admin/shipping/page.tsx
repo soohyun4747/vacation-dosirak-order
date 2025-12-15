@@ -87,65 +87,76 @@ export default function AdminShippingPage() {
 				</div>
 			</Card>
 
-			<Card className='divide-y divide-gray-100 text-sm'>
-				<div className='grid grid-cols-6 gap-2 pb-2 font-semibold text-gray-700'>
-					<span>배송일</span>
-					<span>주문번호</span>
-					<span className='col-span-2'>고객/주소</span>
-					<span>배정 기사</span>
-					<span className='text-center'>상태</span>
-				</div>
-				{filteredOrders.map((order) => (
-					<div
-						key={order.id}
-						className='grid grid-cols-6 items-center gap-2 py-2'>
-						<span className='text-xs text-gray-600'>
-							{new Date(order.deliveryDate).toLocaleDateString()}
-						</span>
-						<span className='font-semibold text-gray-900'>
-							{order.id}
-						</span>
-						<span className='col-span-2 text-gray-700'>
-							{order.customerName}
-							<br />
-							<span className='text-xs text-gray-500'>
-								{order.address.main}
-							</span>
-						</span>
-						<div className='space-y-1'>
-							<Select
-								value={order.driverId ?? ''}
-								onChange={(e) =>
-									handleAssign(order.id, e.target.value)
-								}
-								className='w-full'>
-								<option value=''>기사 선택</option>
-								{filteredDrivers.map((driver: Driver) => (
-									<option
-										key={driver.id}
-										value={driver.id}>
-										{driver.name}
-									</option>
-								))}
-							</Select>
-						</div>
-						<div className='flex justify-center'>
-							{order.status ? (
-								<Badge status={order.status} />
-							) : (
-								<span className='text-xs text-gray-500'>
-									미정
-								</span>
-							)}
-						</div>
-					</div>
-				))}
-				{filteredOrders.length === 0 && (
-					<div className='py-6 text-center text-sm text-gray-500'>
-						선택한 조건에 해당하는 주문이 없습니다.
-					</div>
-				)}
-			</Card>
-		</div>
-	);
+                        <Card className='text-sm'>
+                                <div className='overflow-auto'>
+                                        <table className='w-full text-left text-gray-700'>
+                                                <thead className='bg-gray-50 text-xs uppercase text-gray-500'>
+                                                        <tr>
+                                                                <th className='px-4 py-2'>배송일</th>
+                                                                <th className='px-4 py-2'>주문번호</th>
+                                                                <th className='px-4 py-2'>고객/주소</th>
+                                                                <th className='px-4 py-2'>배정 기사</th>
+                                                                <th className='px-4 py-2 text-center'>상태</th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody className='divide-y divide-gray-100'>
+                                                        {filteredOrders.map((order) => (
+                                                                <tr key={order.id} className='align-top'>
+                                                                        <td className='px-4 py-3 text-xs text-gray-600'>
+                                                                                {new Date(order.deliveryDate).toLocaleDateString()}
+                                                                        </td>
+                                                                        <td className='px-4 py-3 font-semibold text-gray-900'>
+                                                                                {order.id}
+                                                                        </td>
+                                                                        <td className='px-4 py-3 text-gray-700'>
+                                                                                <div className='font-medium text-gray-900'>
+                                                                                        {order.customerName}
+                                                                                </div>
+                                                                                <div className='text-xs text-gray-500'>
+                                                                                        {order.address.main}
+                                                                                </div>
+                                                                        </td>
+                                                                        <td className='px-4 py-3'>
+                                                                                <Select
+                                                                                        value={order.driverId ?? ''}
+                                                                                        onChange={(e) =>
+                                                                                                handleAssign(order.id, e.target.value)
+                                                                                        }
+                                                                                        className='w-full'>
+                                                                                        <option value=''>기사 선택</option>
+                                                                                        {filteredDrivers.map((driver: Driver) => (
+                                                                                                <option
+                                                                                                        key={driver.id}
+                                                                                                        value={driver.id}>
+                                                                                                        {driver.name}
+                                                                                                </option>
+                                                                                        ))}
+                                                                                </Select>
+                                                                        </td>
+                                                                        <td className='px-4 py-3 text-center'>
+                                                                                {order.status ? (
+                                                                                        <Badge status={order.status} />
+                                                                                ) : (
+                                                                                        <span className='text-xs text-gray-500'>
+                                                                                                미정
+                                                                                        </span>
+                                                                                )}
+                                                                        </td>
+                                                                </tr>
+                                                        ))}
+                                                        {filteredOrders.length === 0 && (
+                                                                <tr>
+                                                                        <td
+                                                                                className='px-4 py-6 text-center text-sm text-gray-500'
+                                                                                colSpan={5}>
+                                                                                선택한 조건에 해당하는 주문이 없습니다.
+                                                                        </td>
+                                                                </tr>
+                                                        )}
+                                                </tbody>
+                                        </table>
+                                </div>
+                        </Card>
+                </div>
+        );
 }
