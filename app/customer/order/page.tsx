@@ -107,9 +107,9 @@ export default function CustomerOrderPage() {
 
 			<Card className='space-y-3'>
 				<div className='flex items-center gap-2'>
-					<h2 className='font-bold text-amber-500'>주문 날짜</h2>
+					<h2 className='font-bold text-amber-500 '>주문 날짜</h2>
 				</div>
-				<div className='flex gap-3'>
+				<div className='grid grid-cols-2 gap-3'>
 					{weekdayOptions.map((date) => (
 						<button
 							type='button'
@@ -218,7 +218,7 @@ export default function CustomerOrderPage() {
 				</div>
 			</Card>
 
-			<div className='fixed bottom-4 left-0 right-0 mx-auto flex max-w-3xl items-center justify-between gap-3 rounded-2xl border border-amber-100 bg-white px-4 py-3 shadow-lg'>
+			<div className='fixed bottom-4 left-0 right-0 md:mx-auto mx-2 flex max-w-3xl items-center justify-between gap-3 rounded-2xl border border-amber-100 bg-white px-4 py-3 shadow-lg'>
 				<div className='flex flex-col text-sm'>
 					<span className='font-semibold text-gray-900'>
 						장바구니 {totalCount}개

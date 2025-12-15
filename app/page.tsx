@@ -35,9 +35,10 @@ export default function Home() {
 
 	return (
 		<div className='flex flex-col justify-center items-center gap-6'>
-			<PageHeader title='로그인' />
-
-			<Card className='md:w-[360px]'>
+			<Card className='md:w-[360px] w-full'>
+				<p className='w-full text-center mb-4 text-sm font-semibold text-gray-600'>
+					로그인
+				</p>
 				<form
 					onSubmit={handleSubmit}
 					className='space-y-4'>
@@ -95,15 +96,15 @@ export default function Home() {
 								회원가입
 							</Button>
 							<Button
-                                                        type='button'
-                                                        variant='ghost'
-                                                        className='w-1/2'
-                                                        onClick={() => router.push('/forgot-password')}>
-                                                                아이디/비밀번호 찾기
-                                                        </Button>
-                                                </div>
-                                        </div>
-                                </form>
+								type='button'
+								variant='ghost'
+								className='w-1/2 text-xs'
+								onClick={() => router.push('/forgot-password')}>
+								아이디/비밀번호 찾기
+							</Button>
+						</div>
+					</div>
+				</form>
 			</Card>
 		</div>
 	);
