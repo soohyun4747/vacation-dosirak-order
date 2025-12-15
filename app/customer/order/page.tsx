@@ -11,9 +11,6 @@ import { useCart } from '../../../src/context/CartContext';
 import { menuItems } from '../../../src/mock/menu';
 import { Address } from '../../../src/types';
 
-const mealPlanImage =
-	'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80';
-
 type WeekdayOption = { label: string; displayDate: string; iso: string };
 
 const getWeekdayOptions = (): WeekdayOption[] => {
@@ -147,7 +144,7 @@ export default function CustomerOrderPage() {
 				</div>
 				<div className='overflow-hidden rounded-lg border border-amber-100'>
 					<Image
-						src={mealPlanImage}
+						src={'/menu-notice.png'}
 						alt='이번주 식단표'
 						width={800}
 						height={400}
