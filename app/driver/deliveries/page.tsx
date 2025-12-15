@@ -13,10 +13,6 @@ export default function DriverDeliveriesPage() {
   const [date, setDate] = useState(() => new Date().toISOString().slice(0, 10));
   const [orders] = useState(mockOrders);
 
-  const filtered = useMemo(() => {
-    return orders.filter((order) => order.deliveryDate.slice(0, 10) === date);
-  }, [date, orders]);
-
   return (
     <div className="space-y-6">
       <PageHeader title="배송 목록" backHref="/" />
@@ -26,15 +22,15 @@ export default function DriverDeliveriesPage() {
       </Card>
 
       <Card className="divide-y divide-gray-100">
-        {filtered.length === 0 && <p className="py-3 text-sm text-gray-600">선택한 날짜의 배송이 없습니다.</p>}
-        {filtered.map((order) => (
+        {orders.length === 0 && <p className="py-3 text-sm text-gray-600">선택한 날짜의 배송이 없습니다.</p>}
+        {orders.map((order) => (
           <div key={order.id} className="flex items-center justify-between gap-3 py-3">
             <div>
               <p className="text-sm font-semibold text-gray-900">{order.customerName}</p>
               <p className="text-xs text-gray-500">{order.address.main}</p>
             </div>
             <div className="flex items-center gap-2 text-sm">
-              <Badge status={order.status} />
+              {order.status && <Badge status={order.status} />}
               <Link className="text-amber-700 underline" href={`/driver/deliveries/${order.id}`}>
                 상세보기
               </Link>

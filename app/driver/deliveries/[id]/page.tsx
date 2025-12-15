@@ -12,11 +12,11 @@ import { OrderStatus } from '../../../../src/types';
 export default function DriverDeliveryDetailPage() {
   const params = useParams<{ id: string }>();
   const order = mockOrders.find((o) => o.id === params.id);
-  const [status, setStatus] = useState<OrderStatus>(order?.status ?? 'PENDING');
+  const [status, setStatus] = useState<OrderStatus>(order?.status ?? 'CONFIRMED');
   const [message, setMessage] = useState('');
 
   const complete = () => {
-    setStatus('COMPLETED');
+    setStatus('DELIVERED');
     setMessage('배송을 완료했습니다. 고생하셨습니다!');
   };
 
@@ -67,7 +67,7 @@ export default function DriverDeliveryDetailPage() {
             전화걸기
           </Button>
         </a>
-        <Button className="flex-1" onClick={complete} disabled={status === 'COMPLETED'}>
+        <Button className="flex-1" onClick={complete} disabled={status === 'DELIVERED'}>
           배송 완료
         </Button>
       </div>
