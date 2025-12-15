@@ -98,7 +98,7 @@ export default function AdminShippingPage() {
 
 			<Card className='text-sm'>
 				<div className='overflow-auto'>
-					<table className='w-full text-left text-gray-700'>
+					<table className='w-max text-left text-gray-700'>
 						<thead className='bg-gray-50 text-xs uppercase text-gray-500'>
 							<tr>
 								<th className='px-4 py-2'>배송일</th>

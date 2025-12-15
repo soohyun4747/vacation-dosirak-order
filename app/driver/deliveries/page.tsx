@@ -88,7 +88,7 @@ export default function DriverDeliveriesPage() {
 			<PageHeader
 				title='배송 목록'
 			/>
-			<Card className='flex items-center justify-between text-sm'>
+			<Card className='flex items-center md:justify-between justify-center gap-2 text-sm'>
 				<Input
 					type='date'
 					value={date}
