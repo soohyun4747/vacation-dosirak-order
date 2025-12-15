@@ -35,6 +35,7 @@ const buildOrder = (id: string): Order => {
       { menuId: 'menu-2', name: '덮밥도시락', unitPrice: 6900, quantity: 1 },
     ],
     totalPrice: 6900 * 3 + 6900,
+    status: 'CONFIRMED',
   };
 };
 

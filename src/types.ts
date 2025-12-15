@@ -1,4 +1,11 @@
-export type OrderStatus = 'CONFIRMED' | 'CANCELED' | 'DELIVERED';
+export type OrderStatus =
+  | 'CONFIRMED'
+  | 'CANCELED'
+  | 'DELIVERED'
+  | 'PENDING'
+  | 'PREPARING'
+  | 'DELIVERING'
+  | 'COMPLETED';
 
 export interface Address {
   id?: string;

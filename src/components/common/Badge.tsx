@@ -5,6 +5,9 @@ const colorMap: Record<OrderStatus, string> = {
   PREPARING: 'bg-amber-100 text-amber-800 border-amber-200',
   DELIVERING: 'bg-orange-100 text-orange-800 border-orange-200',
   COMPLETED: 'bg-green-100 text-green-800 border-green-200',
+  CONFIRMED: 'bg-blue-100 text-blue-800 border-blue-200',
+  DELIVERED: 'bg-emerald-100 text-emerald-800 border-emerald-200',
+  CANCELED: 'bg-gray-100 text-gray-700 border-gray-200',
 };
 
 export const Badge = ({ status }: { status: OrderStatus }) => (
