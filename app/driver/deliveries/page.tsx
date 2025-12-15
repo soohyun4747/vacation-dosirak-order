@@ -14,7 +14,7 @@ export default function DriverDeliveriesPage() {
   const [orders] = useState(mockOrders);
 
   const filtered = useMemo(() => {
-    return orders.filter((order) => order.orderDate.slice(0, 10) === date);
+    return orders.filter((order) => order.deliveryDate.slice(0, 10) === date);
   }, [date, orders]);
 
   return (

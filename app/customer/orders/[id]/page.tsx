@@ -20,7 +20,7 @@ export default function CustomerOrderDetail() {
         </div>
         <div className="flex items-center justify-between text-sm">
           <span className="text-gray-600">배송일</span>
-          <span className="font-semibold text-gray-900">{new Date(order.orderDate).toLocaleDateString()}</span>
+          <span className="font-semibold text-gray-900">{new Date(order.deliveryDate).toLocaleDateString()}</span>
         </div>
       </Card>
 
@@ -40,7 +40,7 @@ export default function CustomerOrderDetail() {
             </span>
             <div className="text-right">
               <span className="block">₩{(item.unitPrice * item.quantity).toLocaleString()}</span>
-              <span className="text-xs text-gray-500">{new Date(order.orderDate).toLocaleDateString()} 배송</span>
+              <span className="text-xs text-gray-500">{new Date(order.deliveryDate).toLocaleDateString()} 배송</span>
             </div>
           </div>
         ))}

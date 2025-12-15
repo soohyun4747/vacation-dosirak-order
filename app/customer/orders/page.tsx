@@ -70,12 +70,9 @@ export default function CustomerOrdersPage() {
 														{item.quantity}
 													</span>
 												</p>
-												<span className='text-xs text-gray-600'>
-													배송일{' '}
-													{new Date(
-														item.orderDate
-													).toLocaleDateString()}
-												</span>
+                                                                                                <span className='text-xs text-gray-600'>
+                                                                                                        배송일 {new Date(order.deliveryDate).toLocaleDateString()}
+                                                                                                </span>
 											</div>
 										))}
 									</div>

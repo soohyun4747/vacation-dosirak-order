@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { Button } from '../src/components/common/Button';
 import { Card } from '../src/components/common/Card';
 import { Input } from '../src/components/common/Input';
-import { PageHeader } from '../src/components/common/PageHeader';
 import { mockUsers } from '../src/mock/users';
 
 export default function Home() {

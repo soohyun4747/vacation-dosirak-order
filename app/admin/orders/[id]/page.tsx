@@ -45,7 +45,7 @@ export default function AdminOrderDetailPage() {
           </div>
           <div className="space-y-2 text-sm text-gray-700">
             <p>주문일: {new Date(order.createdAt).toLocaleString()}</p>
-            <p>배송일: {new Date(order.orderDate).toLocaleDateString()}</p>
+            <p>배송일: {new Date(order.deliveryDate).toLocaleDateString()}</p>
             <p>고객: {order.customerName} ({order.customerPhone})</p>
             <p>주소: {order.address.main}</p>
             <p>상세주소: {order.address.detail}</p>

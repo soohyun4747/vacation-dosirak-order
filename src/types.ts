@@ -34,7 +34,6 @@ export interface OrderItem {
   name: string;
   unitPrice: number;
   quantity: number;
-  orderDate: string;
 }
 
 export interface Driver {
@@ -50,6 +49,7 @@ export interface Order {
   customerPhone: string;
   address: Address;
   createdAt: string;
+  deliveryDate: string;
   items: OrderItem[];
   totalPrice: number;
   driverId?: string;

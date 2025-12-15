@@ -9,36 +9,25 @@ import { Input } from '../../../src/components/common/Input';
 import { PageHeader } from '../../../src/components/common/PageHeader';
 import { useCart } from '../../../src/context/CartContext';
 import { menuItems } from '../../../src/mock/menu';
-import { Address } from '../../../src/types';
 
-type WeekdayOption = { label: string; displayDate: string; iso: string };
-
-const getWeekdayOptions = (): WeekdayOption[] => {
-	const today = new Date();
-	const currentDay = today.getDay();
-	const mondayOffset = currentDay === 0 ? -6 : 1 - currentDay;
-	const monday = new Date(today);
-	monday.setDate(today.getDate() + mondayOffset);
-
-	const labels = ['월', '화', '수', '목', '금'];
-	return labels.map((label, index) => {
-		const date = new Date(monday);
-		date.setDate(monday.getDate() + index);
-		const displayDate = `${date.getMonth() + 1}/${date.getDate()}`;
-		return { label, displayDate, iso: date.toISOString() };
-	});
-};
+type DeliveryDate = { label: string; displayDate: string; iso: string };
 
 export default function CustomerOrderPage() {
-	const { addToCart, totalCount, subtotal } = useCart();
-	const [mainAddress, setMainAddress] = useState('');
-	const [detail, setDetail] = useState('');
-	const [entranceCode, setEntranceCode] = useState('');
-	const weekdayOptions = useMemo(() => getWeekdayOptions(), []);
-	const [selectedDate, setSelectedDate] = useState<WeekdayOption>(
-		weekdayOptions[0]
-	);
-	const [quantities, setQuantities] = useState<Record<string, number>>({});
+        const { addToCart, totalCount, subtotal } = useCart();
+        const [mainAddress, setMainAddress] = useState('');
+        const [detail, setDetail] = useState('');
+        const [entranceCode, setEntranceCode] = useState('');
+        const [quantities, setQuantities] = useState<Record<string, number>>({});
+
+        const deliveryDate: DeliveryDate = useMemo(() => {
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                return {
+                        label: '내일',
+                        displayDate: `${tomorrow.getMonth() + 1}/${tomorrow.getDate()}`,
+                        iso: tomorrow.toISOString(),
+                };
+        }, []);
 
 	const totalDisplay = useMemo(
 		() => new Intl.NumberFormat('ko-KR').format(subtotal),
@@ -52,16 +41,16 @@ export default function CustomerOrderPage() {
 		}));
 	};
 
-	const handleAddToCart = (menuId: string) => {
-		const menu = menuItems.find((item) => item.id === menuId)!;
-		const quantity = Math.max(1, quantities[menuId] ?? 1);
-		addToCart(
-			menu,
-			quantity,
-			selectedDate.iso,
-			`${selectedDate.label} (${selectedDate.displayDate})`
-		);
-	};
+        const handleAddToCart = (menuId: string) => {
+                const menu = menuItems.find((item) => item.id === menuId)!;
+                const quantity = Math.max(1, quantities[menuId] ?? 1);
+                addToCart(
+                        menu,
+                        quantity,
+                        deliveryDate.iso,
+                        `${deliveryDate.label} (${deliveryDate.displayDate})`
+                );
+        };
 
 	return (
 		<div className='space-y-6 pb-32'>
@@ -105,38 +94,14 @@ export default function CustomerOrderPage() {
 				</div>
 			</Card>
 
-			<Card className='space-y-3'>
-				<div className='flex items-center gap-2'>
-					<h2 className='font-bold text-amber-500 '>주문 날짜</h2>
-				</div>
-				<div className='grid grid-cols-2 gap-3'>
-					{weekdayOptions.map((date) => (
-						<button
-							type='button'
-							key={date.iso}
-							onClick={() => setSelectedDate(date)}
-							className={`flex w-full items-center justify-between rounded-xl border px-4 py-3 text-left shadow-sm transition ${
-								selectedDate.iso === date.iso
-									? 'border-amber-400 bg-amber-50 ring-2 ring-amber-100'
-									: 'border-gray-100 bg-white hover:border-amber-200'
-							}`}>
-							<div>
-								<p className='text-sm font-semibold text-gray-900'>
-									{date.label}요일
-								</p>
-								<p className='text-xs text-gray-600'>
-									{date.displayDate}
-								</p>
-							</div>
-							{selectedDate.iso === date.iso && (
-								<span className='text-sm font-bold text-amber-600'>
-									선택됨
-								</span>
-							)}
-						</button>
-					))}
-				</div>
-			</Card>
+                        <Card className='space-y-2 border-amber-100 bg-amber-50 text-amber-900'>
+                                <h2 className='text-sm font-semibold'>주문 안내</h2>
+                                <p className='text-sm'>
+                                        오후 5시까지 내일 도시락 주문을 받습니다. 배송일은 {deliveryDate.displayDate} ({
+                                        deliveryDate.label
+                                })입니다.
+                                </p>
+                        </Card>
 
 			<Card className='space-y-3'>
 				<div className='flex items-center gap-2'>
@@ -176,13 +141,12 @@ export default function CustomerOrderPage() {
 										₩{menu.price.toLocaleString()}
 									</span>
 								</div>
-								<div className='flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between'>
-									<div className='flex items-center gap-2'>
-										<span className='text-xs font-semibold text-amber-700'>
-											{selectedDate.label} ·{' '}
-											{selectedDate.displayDate}
-										</span>
-									</div>
+                                                                <div className='flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between'>
+                                                                        <div className='flex items-center gap-2'>
+                                                                                <span className='text-xs font-semibold text-amber-700'>
+                                                                                        {deliveryDate.label} · {deliveryDate.displayDate}
+                                                                                </span>
+                                                                        </div>
 									<div className='flex items-center justify-between gap-3 sm:justify-end'>
 										<div className='flex items-center gap-2'>
 											<Button
@@ -203,13 +167,13 @@ export default function CustomerOrderPage() {
 												+
 											</Button>
 										</div>
-										<Button
-											onClick={() =>
-												handleAddToCart(menu.id)
-											}
-											disabled={!selectedDate}>
-											장바구니 담기
-										</Button>
+                                                                                <Button
+                                                                                        onClick={() =>
+                                                                                                handleAddToCart(menu.id)
+                                                                                        }
+                                                                                        disabled={!deliveryDate}>
+                                                                                        장바구니 담기
+                                                                                </Button>
 									</div>
 								</div>
 							</div>

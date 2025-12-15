@@ -1,4 +1,4 @@
-import { Address, Driver, Order, OrderStatus } from '../types';
+import { Address, Driver, Order } from '../types';
 
 const baseAddress: Address = {
   id: 'addr-1',
@@ -20,7 +20,7 @@ const buildOrder = (id: string): Order => {
   const created = new Date(now);
   created.setHours(created.getHours());
   const delivery = new Date(now);
-  delivery.setDate(delivery.getDate());
+  delivery.setDate(delivery.getDate() + 1);
 
   return {
     id: `${id}`,
@@ -29,9 +29,10 @@ const buildOrder = (id: string): Order => {
     customerPhone: `010-1234-5678`,
     address: { ...baseAddress, detail: `${100}동 ${1000}호` },
     createdAt: formatDate(created),
+    deliveryDate: formatDate(delivery),
     items: [
-      { menuId: 'menu-1', name: '김밥도시락', unitPrice: 6900, quantity: 3, orderDate: formatDate(delivery) },
-      { menuId: 'menu-2', name: '덮밥도시락', unitPrice: 6900, quantity: 1, orderDate: formatDate(delivery) },
+      { menuId: 'menu-1', name: '김밥도시락', unitPrice: 6900, quantity: 3 },
+      { menuId: 'menu-2', name: '덮밥도시락', unitPrice: 6900, quantity: 1 },
     ],
     totalPrice: 6900 * 3 + 6900,
   };
