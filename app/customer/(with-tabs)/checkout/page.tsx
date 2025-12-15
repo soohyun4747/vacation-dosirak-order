@@ -3,11 +3,11 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
-import { Button } from '../../../src/components/common/Button';
-import { Card } from '../../../src/components/common/Card';
-import { Checkbox } from '../../../src/components/common/Checkbox';
-import { PageHeader } from '../../../src/components/common/PageHeader';
-import { useCart } from '../../../src/context/CartContext';
+import { Button } from '@/src/components/common/Button';
+import { Card } from '@/src/components/common/Card';
+import { Checkbox } from '@/src/components/common/Checkbox';
+import { PageHeader } from '@/src/components/common/PageHeader';
+import { useCart } from '@/src/context/CartContext';
 
 export default function CheckoutPage() {
   const router = useRouter();

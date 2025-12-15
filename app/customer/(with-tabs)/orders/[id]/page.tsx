@@ -1,9 +1,9 @@
 'use client';
 
 import { notFound, useParams } from 'next/navigation';
-import { Card } from '../../../../src/components/common/Card';
-import { PageHeader } from '../../../../src/components/common/PageHeader';
-import { orders } from '../../../../src/mock/data';
+import { Card } from '@/src/components/common/Card';
+import { PageHeader } from '@/src/components/common/PageHeader';
+import { orders } from '@/src/mock/data';
 
 export default function CustomerOrderDetail() {
   const params = useParams<{ id: string }>();

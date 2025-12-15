@@ -1,9 +1,9 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { Card } from '../../../src/components/common/Card';
-import { PageHeader } from '../../../src/components/common/PageHeader';
-import { orders as mockOrders } from '../../../src/mock/data';
+import { Card } from '@/src/components/common/Card';
+import { PageHeader } from '@/src/components/common/PageHeader';
+import { orders as mockOrders } from '@/src/mock/data';
 
 export default function CustomerOrdersPage() {
 	const [orders] = useState(mockOrders);

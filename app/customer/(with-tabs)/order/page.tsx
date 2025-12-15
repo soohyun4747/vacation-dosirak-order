@@ -3,13 +3,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
-import { Button } from '../../../src/components/common/Button';
-import { Card } from '../../../src/components/common/Card';
-import { Input } from '../../../src/components/common/Input';
-import { PageHeader } from '../../../src/components/common/PageHeader';
-import { useCart } from '../../../src/context/CartContext';
-import { menuItems } from '../../../src/mock/menu';
-import { Address } from '../../../src/types';
+import { Button } from '@/src/components/common/Button';
+import { Card } from '@/src/components/common/Card';
+import { Input } from '@/src/components/common/Input';
+import { PageHeader } from '@/src/components/common/PageHeader';
+import { useCart } from '@/src/context/CartContext';
+import { menuItems } from '@/src/mock/menu';
 
 type WeekdayOption = { label: string; displayDate: string; iso: string };
 

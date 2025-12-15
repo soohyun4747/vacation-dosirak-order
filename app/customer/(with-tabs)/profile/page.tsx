@@ -1,10 +1,10 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
-import { Button } from '../../../src/components/common/Button';
-import { Card } from '../../../src/components/common/Card';
-import { Input } from '../../../src/components/common/Input';
-import { PageHeader } from '../../../src/components/common/PageHeader';
+import { Button } from '@/src/components/common/Button';
+import { Card } from '@/src/components/common/Card';
+import { Input } from '@/src/components/common/Input';
+import { PageHeader } from '@/src/components/common/PageHeader';
 
 const defaultProfile = {
   id: 'customer',

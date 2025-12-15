@@ -14,10 +14,18 @@ export default function SignupPage() {
   const [username, setUsername] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [agree, setAgree] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      setError('비밀번호가 일치하지 않습니다. 다시 확인해주세요.');
+      return;
+    }
+
+    setError('');
     console.log({ name, username, phone, password, agree });
     router.push('/customer/order');
   };
@@ -56,12 +64,30 @@ export default function SignupPage() {
             <label className="mb-1 block text-sm font-medium">비밀번호</label>
             <Input
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                if (error) setError('');
+              }}
               required
               placeholder="비밀번호를 입력하세요"
               type="password"
               autoComplete="new-password"
             />
+          </div>
+          <div>
+            <label className="mb-1 block text-sm font-medium">비밀번호 확인</label>
+            <Input
+              value={confirmPassword}
+              onChange={(e) => {
+                setConfirmPassword(e.target.value);
+                if (error) setError('');
+              }}
+              required
+              placeholder="비밀번호를 다시 입력하세요"
+              type="password"
+              autoComplete="new-password"
+            />
+            {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
           </div>
           <div className="space-y-2">
             <p className="text-sm font-semibold text-gray-900">개인정보 처리방침</p>
@@ -168,7 +194,7 @@ export default function SignupPage() {
           <label className="flex items-center gap-2 text-sm text-gray-700">
             <Checkbox checked={agree} onChange={(e) => setAgree(e.target.checked)} /> 개인정보 처리방침에 동의합니다.
           </label>
-          <Button type="submit" className="w-full" disabled={!agree}>
+          <Button type="submit" className="w-full" disabled={!agree || password !== confirmPassword || !password}>
             가입하기
           </Button>
         </form>

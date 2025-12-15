@@ -8,7 +8,7 @@ import { PageHeader } from '../../src/components/common/PageHeader';
 
 export default function ForgotPasswordPage() {
   const [userId, setUserId] = useState('');
-  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [name, setName] = useState('');
   const [mode, setMode] = useState<'id' | 'password'>('id');
   const [submitted, setSubmitted] = useState(false);
@@ -25,11 +25,11 @@ export default function ForgotPasswordPage() {
     setSubmitted(true);
 
     if (mode === 'id') {
-      setMessage('입력하신 정보와 일치하는 아이디를 가입 이메일로 안내드렸습니다.');
+      setMessage('입력하신 정보와 일치하는 아이디를 가입 전화번호로 안내드렸습니다.');
       return;
     }
 
-    setMessage('입력하신 정보를 확인해 임시 비밀번호를 이메일로 전송해드렸습니다.');
+    setMessage('입력하신 정보를 확인해 임시 비밀번호를 문자로 전송해드렸습니다.');
   };
 
   return (
@@ -73,16 +73,17 @@ export default function ForgotPasswordPage() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-800" htmlFor="email">
-                  가입 이메일
+                <label className="text-sm font-medium text-gray-800" htmlFor="phone">
+                  가입 전화번호
                 </label>
                 <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                  placeholder="you@example.com"
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  autoComplete="tel"
+                  value={phone}
+                  onChange={(event) => setPhone(event.target.value)}
+                  placeholder="010-1234-5678"
                   required
                 />
               </div>
@@ -106,16 +107,17 @@ export default function ForgotPasswordPage() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-800" htmlFor="email">
-                  가입 이메일
+                <label className="text-sm font-medium text-gray-800" htmlFor="phone">
+                  가입 전화번호
                 </label>
                 <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                  placeholder="you@example.com"
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  autoComplete="tel"
+                  value={phone}
+                  onChange={(event) => setPhone(event.target.value)}
+                  placeholder="010-1234-5678"
                   required
                 />
               </div>

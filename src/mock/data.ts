@@ -1,4 +1,4 @@
-import { Address, Driver, Order, OrderStatus } from '../types';
+import { Address, Driver, Order } from '../types';
 
 const baseAddress: Address = {
   id: 'addr-1',

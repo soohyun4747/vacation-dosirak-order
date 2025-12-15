@@ -1,10 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { Button, IconButton } from '../../../src/components/common/Button';
-import { Card } from '../../../src/components/common/Card';
-import { PageHeader } from '../../../src/components/common/PageHeader';
-import { useCart } from '../../../src/context/CartContext';
+import { Button, IconButton } from '@/src/components/common/Button';
+import { Card } from '@/src/components/common/Card';
+import { PageHeader } from '@/src/components/common/PageHeader';
+import { useCart } from '@/src/context/CartContext';
 
 export default function CartPage() {
   const { items, updateQuantity, removeItem, subtotal, totalCount } = useCart();
