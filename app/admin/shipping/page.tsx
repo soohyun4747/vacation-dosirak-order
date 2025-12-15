@@ -67,7 +67,6 @@ export default function AdminShippingPage() {
           <span className="col-span-2">고객/주소</span>
           <span>배정 기사</span>
           <span className="text-center">상태</span>
-          <span className="text-right">조치</span>
         </div>
         {filteredOrders.map((order) => (
           <div key={order.id} className="grid grid-cols-6 items-center gap-2 py-2">
@@ -87,17 +86,13 @@ export default function AdminShippingPage() {
                 <option value="">기사 선택</option>
                 {filteredDrivers.map((driver: Driver) => (
                   <option key={driver.id} value={driver.id}>
-                    {driver.name} ({driver.phone})
+                    {driver.name}
                   </option>
                 ))}
               </Select>
-              <p className="text-xs text-gray-500">{order.driverName ? `${order.driverName} 배정됨` : '미배정'}</p>
             </div>
             <div className="flex justify-center">
               {order.status ? <Badge status={order.status} /> : <span className="text-xs text-gray-500">미정</span>}
-            </div>
-            <div className="flex justify-end text-xs text-gray-500">
-              {deliveryDate ? `${deliveryDate} 배송` : '전체 보기'}
             </div>
           </div>
         ))}
