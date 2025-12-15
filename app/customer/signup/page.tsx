@@ -14,10 +14,15 @@ export default function SignupPage() {
   const [username, setUsername] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [agree, setAgree] = useState(false);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      alert('비밀번호가 일치하지 않습니다.');
+      return;
+    }
     console.log({ name, username, phone, password, agree });
     router.push('/customer/order');
   };
@@ -59,6 +64,17 @@ export default function SignupPage() {
               onChange={(e) => setPassword(e.target.value)}
               required
               placeholder="비밀번호를 입력하세요"
+              type="password"
+              autoComplete="new-password"
+            />
+          </div>
+          <div>
+            <label className="mb-1 block text-sm font-medium">비밀번호 확인</label>
+            <Input
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+              placeholder="비밀번호를 다시 입력하세요"
               type="password"
               autoComplete="new-password"
             />
