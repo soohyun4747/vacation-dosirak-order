@@ -92,7 +92,7 @@ export default function AdminOrderDetailPage() {
             ))}
           </Select>
           {driverLoad !== null && (
-            <div className="rounded-lg bg-blue-50 px-4 py-3 text-sm text-blue-800">오늘 배정 건수: {driverLoad}건</div>
+            <div className="rounded-lg bg-amber-50 px-4 py-3 text-sm text-amber-800">오늘 배정 건수: {driverLoad}건</div>
           )}
           <Button onClick={handleAssign} disabled={!selectedDriver}>
             배정하기

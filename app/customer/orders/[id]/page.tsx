@@ -1,7 +1,6 @@
 'use client';
 
 import { notFound, useParams } from 'next/navigation';
-import { Badge } from '../../../../src/components/common/Badge';
 import { Card } from '../../../../src/components/common/Card';
 import { PageHeader } from '../../../../src/components/common/PageHeader';
 import { orders } from '../../../../src/mock/data';
@@ -23,10 +22,6 @@ export default function CustomerOrderDetail() {
           <span className="text-gray-600">배송일</span>
           <span className="font-semibold text-gray-900">{new Date(order.orderDate).toLocaleDateString()}</span>
         </div>
-        <div className="flex items-center justify-between text-sm">
-          <span className="text-gray-600">상태</span>
-          <Badge status={order.status} />
-        </div>
       </Card>
 
       <Card className="space-y-2 text-sm">
@@ -43,7 +38,10 @@ export default function CustomerOrderDetail() {
             <span>
               {item.name} x {item.quantity}
             </span>
-            <span>₩{(item.unitPrice * item.quantity).toLocaleString()}</span>
+            <div className="text-right">
+              <span className="block">₩{(item.unitPrice * item.quantity).toLocaleString()}</span>
+              <span className="text-xs text-gray-500">{new Date(order.orderDate).toLocaleDateString()} 배송</span>
+            </div>
           </div>
         ))}
         <div className="flex justify-between border-t border-gray-100 pt-2 text-base font-semibold text-gray-900">
