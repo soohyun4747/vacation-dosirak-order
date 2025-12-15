@@ -198,7 +198,7 @@ export default function DriverDeliveriesPage() {
                   </Button>
                 </div>
               </div>
-
+{/* 
               <div className='flex items-center gap-2 text-xs text-gray-500'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -216,7 +216,7 @@ export default function DriverDeliveriesPage() {
                 <span className='font-medium text-gray-600'>
                   길게 누르고 드래그하거나 마우스로 잡아 순서를 바꿔보세요
                 </span>
-              </div>
+              </div> */}
 
               <div className='flex flex-col gap-1 rounded-lg bg-gray-50 px-3 py-2 text-sm text-gray-700'>
                 <p className='mb-1 font-semibold text-gray-900'>주문 메뉴</p>
