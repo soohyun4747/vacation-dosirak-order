@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Button } from '../../../src/components/common/Button';
 import { Card } from '../../../src/components/common/Card';
 import { Checkbox } from '../../../src/components/common/Checkbox';
@@ -12,6 +12,10 @@ import { useCart } from '../../../src/context/CartContext';
 export default function CheckoutPage() {
   const router = useRouter();
   const { items, subtotal, clear } = useCart();
+  const deliverySummary = useMemo(
+    () => Array.from(new Set(items.map((item) => item.deliveryLabel))),
+    [items],
+  );
   const [method, setMethod] = useState<'card' | 'transfer'>('card');
   const [agree, setAgree] = useState(false);
   const [message, setMessage] = useState('');
@@ -29,14 +33,14 @@ export default function CheckoutPage() {
       <Card className="space-y-3">
         <h2 className="text-sm font-semibold text-gray-900">주문 요약</h2>
         <div className="text-sm text-gray-700">
-          <p>배송지: 서울시 강남구 테헤란로 123, 101동 1203호</p>
-          <p>배송일: 내일</p>
+          <p>배송지: 입력한 주소로 배송됩니다.</p>
+          <p>배송일: {deliverySummary.length > 0 ? deliverySummary.join(', ') : '미선택'}</p>
         </div>
         <div className="space-y-2 text-sm">
           {items.map((item) => (
             <div key={item.menu.id} className="flex justify-between">
               <span>
-                {item.menu.name} x {item.quantity}
+                {item.menu.name} ({item.deliveryLabel}) x {item.quantity}
               </span>
               <span>₩{(item.menu.price * item.quantity).toLocaleString()}</span>
             </div>

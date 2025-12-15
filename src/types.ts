@@ -25,6 +25,8 @@ export interface MenuItem {
 export interface CartItem {
   menu: MenuItem;
   quantity: number;
+  deliveryDate: string;
+  deliveryLabel: string;
 }
 
 export interface OrderItem {

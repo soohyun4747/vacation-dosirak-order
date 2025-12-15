@@ -16,25 +16,35 @@ export default function CartPage() {
       <Card className="space-y-3">
         {items.length === 0 && <p className="text-sm text-gray-600">장바구니가 비어 있습니다.</p>}
         {items.map((item) => (
-          <div key={item.menu.id} className="flex items-center justify-between gap-3 border-b border-gray-100 pb-3 last:border-none">
+          <div
+            key={`${item.menu.id}-${item.deliveryDate}`}
+            className="flex items-center justify-between gap-3 border-b border-gray-100 pb-3 last:border-none"
+          >
             <div>
               <p className="text-sm font-semibold text-gray-900">{item.menu.name}</p>
+              <p className="text-xs text-amber-700">배송일: {item.deliveryLabel}</p>
               <p className="text-xs text-gray-500">단가 ₩{item.menu.price.toLocaleString()}</p>
             </div>
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2">
-                <Button variant="secondary" onClick={() => updateQuantity(item.menu.id, item.quantity - 1)}>
+                <Button
+                  variant="secondary"
+                  onClick={() => updateQuantity(item.menu.id, item.deliveryDate, item.quantity - 1)}
+                >
                   –
                 </Button>
                 <span className="w-8 text-center text-sm font-semibold">{item.quantity}</span>
-                <Button variant="secondary" onClick={() => updateQuantity(item.menu.id, item.quantity + 1)}>
+                <Button
+                  variant="secondary"
+                  onClick={() => updateQuantity(item.menu.id, item.deliveryDate, item.quantity + 1)}
+                >
                   +
                 </Button>
               </div>
               <div className="text-right text-sm font-semibold text-gray-900">
                 ₩{(item.menu.price * item.quantity).toLocaleString()}
               </div>
-              <IconButton aria-label="삭제" onClick={() => removeItem(item.menu.id)}>
+              <IconButton aria-label="삭제" onClick={() => removeItem(item.menu.id, item.deliveryDate)}>
                 🗑️
               </IconButton>
             </div>

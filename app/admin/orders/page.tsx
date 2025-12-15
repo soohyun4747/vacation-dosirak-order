@@ -76,7 +76,7 @@ export default function AdminOrdersPage() {
             <span className="text-xs text-gray-600">{order.driverName ?? '미배정'}</span>
             <div className="flex items-center justify-end gap-2">
               <Badge status={order.status} />
-              <Link className="text-blue-600 hover:underline" href={`/admin/orders/${order.id}`}>
+              <Link className="text-amber-700 underline" href={`/admin/orders/${order.id}`}>
                 상세보기
               </Link>
             </div>

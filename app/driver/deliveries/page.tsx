@@ -35,7 +35,7 @@ export default function DriverDeliveriesPage() {
             </div>
             <div className="flex items-center gap-2 text-sm">
               <Badge status={order.status} />
-              <Link className="text-blue-600 hover:underline" href={`/driver/deliveries/${order.id}`}>
+              <Link className="text-amber-700 underline" href={`/driver/deliveries/${order.id}`}>
                 상세보기
               </Link>
             </div>

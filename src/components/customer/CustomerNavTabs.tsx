@@ -14,7 +14,7 @@ export const CustomerNavTabs = () => {
 
   return (
     <nav className="mb-4">
-      <div className="flex rounded-xl border border-gray-200 bg-white p-1 shadow-sm">
+      <div className="flex rounded-xl border border-amber-100 bg-white p-1 shadow-sm">
         {tabs.map((tab) => {
           const isActive = pathname === tab.href || pathname.startsWith(`${tab.href}/`);
 
@@ -23,9 +23,7 @@ export const CustomerNavTabs = () => {
               key={tab.href}
               href={tab.href}
               className={`flex-1 rounded-lg px-3 py-2 text-center text-sm font-medium transition-colors ${
-                isActive
-                  ? 'bg-blue-600 text-white'
-                  : 'text-gray-700 hover:bg-gray-100'
+                isActive ? 'bg-amber-500 text-white shadow-sm' : 'text-gray-700 hover:bg-amber-50'
               }`}
             >
               {tab.label}

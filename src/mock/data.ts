@@ -32,10 +32,10 @@ const buildOrder = (id: number, status: OrderStatus, driverIndex?: number): Orde
     orderDate: formatDate(delivery),
     createdAt: formatDate(created),
     items: [
-      { menuId: 'menu-1', name: '비건 도시락', unitPrice: 12000, quantity: 1 + (id % 2) },
-      { menuId: 'menu-2', name: '불고기 도시락', unitPrice: 14000, quantity: 1 },
+      { menuId: 'menu-1', name: '김밥도시락', unitPrice: 9000, quantity: 1 + (id % 2) },
+      { menuId: 'menu-2', name: '덮밥도시락', unitPrice: 11000, quantity: 1 },
     ],
-    totalPrice: 12000 * (1 + (id % 2)) + 14000,
+    totalPrice: 9000 * (1 + (id % 2)) + 11000,
     status,
     driverId: driver?.id,
     driverName: driver?.name,
