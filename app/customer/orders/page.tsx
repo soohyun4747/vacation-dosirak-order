@@ -70,15 +70,20 @@ export default function CustomerOrdersPage() {
 														{item.quantity}
 													</span>
 												</p>
-                                                                                                <span className='text-xs text-gray-600'>
-                                                                                                        배송일 {new Date(order.deliveryDate).toLocaleDateString()}
-                                                                                                </span>
 											</div>
 										))}
 									</div>
 									<div className='text-xs text-gray-600'>
-										배송지: {order.address.main}{' '}
-										{order.address.detail}
+										<p>
+											배송지: {order.address.main}{' '}
+											{order.address.detail}
+										</p>
+										<p>
+											배송일{' '}
+											{new Date(
+												order.deliveryDate
+											).toLocaleDateString()}
+										</p>
 									</div>
 								</div>
 							)}

@@ -40,7 +40,7 @@ export default function CheckoutPage() {
           {items.map((item) => (
             <div key={item.menu.id} className="flex justify-between">
               <span>
-                {item.menu.name} ({item.deliveryLabel}) x {item.quantity}
+                {item.menu.name} {item.menu.price}원 x {item.quantity}
               </span>
               <span>₩{(item.menu.price * item.quantity).toLocaleString()}</span>
             </div>

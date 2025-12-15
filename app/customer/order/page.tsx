@@ -13,21 +13,21 @@ import { menuItems } from '../../../src/mock/menu';
 type DeliveryDate = { label: string; displayDate: string; iso: string };
 
 export default function CustomerOrderPage() {
-        const { addToCart, totalCount, subtotal } = useCart();
-        const [mainAddress, setMainAddress] = useState('');
-        const [detail, setDetail] = useState('');
-        const [entranceCode, setEntranceCode] = useState('');
-        const [quantities, setQuantities] = useState<Record<string, number>>({});
+	const { addToCart, totalCount, subtotal } = useCart();
+	const [mainAddress, setMainAddress] = useState('');
+	const [detail, setDetail] = useState('');
+	const [entranceCode, setEntranceCode] = useState('');
+	const [quantities, setQuantities] = useState<Record<string, number>>({});
 
-        const deliveryDate: DeliveryDate = useMemo(() => {
-                const tomorrow = new Date();
-                tomorrow.setDate(tomorrow.getDate() + 1);
-                return {
-                        label: '내일',
-                        displayDate: `${tomorrow.getMonth() + 1}/${tomorrow.getDate()}`,
-                        iso: tomorrow.toISOString(),
-                };
-        }, []);
+	const deliveryDate: DeliveryDate = useMemo(() => {
+		const tomorrow = new Date();
+		tomorrow.setDate(tomorrow.getDate() + 1);
+		return {
+			label: '내일',
+			displayDate: `${tomorrow.getMonth() + 1}/${tomorrow.getDate()}`,
+			iso: tomorrow.toISOString(),
+		};
+	}, []);
 
 	const totalDisplay = useMemo(
 		() => new Intl.NumberFormat('ko-KR').format(subtotal),
@@ -41,16 +41,16 @@ export default function CustomerOrderPage() {
 		}));
 	};
 
-        const handleAddToCart = (menuId: string) => {
-                const menu = menuItems.find((item) => item.id === menuId)!;
-                const quantity = Math.max(1, quantities[menuId] ?? 1);
-                addToCart(
-                        menu,
-                        quantity,
-                        deliveryDate.iso,
-                        `${deliveryDate.label} (${deliveryDate.displayDate})`
-                );
-        };
+	const handleAddToCart = (menuId: string) => {
+		const menu = menuItems.find((item) => item.id === menuId)!;
+		const quantity = Math.max(1, quantities[menuId] ?? 1);
+		addToCart(
+			menu,
+			quantity,
+			deliveryDate.iso,
+			`${deliveryDate.label} (${deliveryDate.displayDate})`
+		);
+	};
 
 	return (
 		<div className='space-y-6 pb-32'>
@@ -66,15 +66,15 @@ export default function CustomerOrderPage() {
 					</div>
 					<Button variant='secondary'>주소 검색</Button>
 				</div>
-				<div className='flex flex-col gap-1'>
-					<p className='text-xs text-gray-600'>주소</p>
-					<Input
-						placeholder='배송지 주소를 입력하세요'
-						value={mainAddress}
-						onChange={(e) => setMainAddress(e.target.value)}
-					/>
-				</div>
 				<div className='grid gap-2 md:grid-cols-2'>
+					<div className='flex flex-col gap-1'>
+						<p className='text-xs text-gray-600'>주소</p>
+						<Input
+							placeholder='배송지 주소를 입력하세요'
+							value={mainAddress}
+							onChange={(e) => setMainAddress(e.target.value)}
+						/>
+					</div>
 					<div className='flex flex-col gap-1'>
 						<p className='text-xs text-gray-600'>상세주소</p>
 						<Input
@@ -84,7 +84,9 @@ export default function CustomerOrderPage() {
 						/>
 					</div>
 					<div className='flex flex-col gap-1'>
-						<p className='text-xs text-gray-600'>공동현관 비밀번호</p>
+						<p className='text-xs text-gray-600'>
+							공동현관 비밀번호
+						</p>
 						<Input
 							placeholder='공동현관 비밀번호 (선택)'
 							value={entranceCode}
@@ -94,14 +96,13 @@ export default function CustomerOrderPage() {
 				</div>
 			</Card>
 
-                        <Card className='space-y-2 border-amber-100 bg-amber-50 text-amber-900'>
-                                <h2 className='text-sm font-semibold'>주문 안내</h2>
-                                <p className='text-sm'>
-                                        오후 5시까지 내일 도시락 주문을 받습니다. 배송일은 {deliveryDate.displayDate} ({
-                                        deliveryDate.label
-                                })입니다.
-                                </p>
-                        </Card>
+			<Card className='space-y-2 border-amber-100 bg-amber-50 text-amber-900'>
+				<h2 className='text-sm font-semibold'>주문 안내</h2>
+				<p className='text-sm'>
+					오후 5시까지 내일 도시락 주문을 받습니다. 배송일은{' '}
+					{deliveryDate.displayDate} ({deliveryDate.label}) 입니다.
+				</p>
+			</Card>
 
 			<Card className='space-y-3'>
 				<div className='flex items-center gap-2'>
@@ -141,12 +142,13 @@ export default function CustomerOrderPage() {
 										₩{menu.price.toLocaleString()}
 									</span>
 								</div>
-                                                                <div className='flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between'>
-                                                                        <div className='flex items-center gap-2'>
-                                                                                <span className='text-xs font-semibold text-amber-700'>
-                                                                                        {deliveryDate.label} · {deliveryDate.displayDate}
-                                                                                </span>
-                                                                        </div>
+								<div className='flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between'>
+									<div className='flex items-center gap-2'>
+										<span className='text-xs font-semibold text-amber-700'>
+											{deliveryDate.label} ·{' '}
+											{deliveryDate.displayDate}
+										</span>
+									</div>
 									<div className='flex items-center justify-between gap-3 sm:justify-end'>
 										<div className='flex items-center gap-2'>
 											<Button
@@ -167,13 +169,13 @@ export default function CustomerOrderPage() {
 												+
 											</Button>
 										</div>
-                                                                                <Button
-                                                                                        onClick={() =>
-                                                                                                handleAddToCart(menu.id)
-                                                                                        }
-                                                                                        disabled={!deliveryDate}>
-                                                                                        장바구니 담기
-                                                                                </Button>
+										<Button
+											onClick={() =>
+												handleAddToCart(menu.id)
+											}
+											disabled={!deliveryDate}>
+											장바구니 담기
+										</Button>
 									</div>
 								</div>
 							</div>

@@ -22,11 +22,11 @@ export default function CartPage() {
           >
             <div>
               <p className="text-sm font-semibold text-gray-900">{item.menu.name}</p>
-              <p className="text-xs text-amber-700">배송일: {item.deliveryLabel}</p>
-              <p className="text-xs text-gray-500">단가 ₩{item.menu.price.toLocaleString()}</p>
+              
+              <p className="text-xs text-gray-500">₩{item.menu.price.toLocaleString()}</p>
             </div>
             <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center">
                 <Button
                   variant="secondary"
                   onClick={() => updateQuantity(item.menu.id, item.deliveryDate, item.quantity - 1)}
