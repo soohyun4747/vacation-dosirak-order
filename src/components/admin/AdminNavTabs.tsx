@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 const tabs = [
   { href: '/admin/orders', label: '주문관리' },
   { href: '/admin/shipping', label: '배송관리' },
+  { href: '/admin/meal-plans', label: '식단표관리' },
 ];
 
 export const AdminNavTabs = () => {
