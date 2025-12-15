@@ -11,7 +11,7 @@ import { Select } from '../../../src/components/common/Select';
 import { orders as mockOrders } from '../../../src/mock/data';
 import { OrderStatus } from '../../../src/types';
 
-const statusOptions: (OrderStatus | 'ALL')[] = ['ALL', 'PENDING', 'PREPARING', 'DELIVERING', 'COMPLETED'];
+const statusOptions: (OrderStatus | 'ALL')[] = ['ALL', 'CONFIRMED', 'CANCELED', 'DELIVERED'];
 
 export default function AdminOrdersPage() {
   const [orders] = useState(mockOrders);
@@ -21,7 +21,7 @@ export default function AdminOrdersPage() {
 
   const filtered = useMemo(() => {
     return orders.filter((order) => {
-      const matchesStatus = status === 'ALL' || order.status === status;
+      const matchesStatus = status === 'ALL';
       const matchesKeyword =
         order.customerName.includes(keyword) || order.customerPhone.includes(keyword) || order.id.includes(keyword);
       const matchesDate = !todayOnly || new Date(order.createdAt).toDateString() === new Date().toDateString();

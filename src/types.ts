@@ -1,4 +1,4 @@
-export type OrderStatus = 'PENDING' | 'PREPARING' | 'DELIVERING' | 'COMPLETED';
+export type OrderStatus = 'CONFIRMED' | 'CANCELED' | 'DELIVERED';
 
 export interface Address {
   id?: string;
@@ -52,6 +52,7 @@ export interface Order {
   deliveryDate: string;
   items: OrderItem[];
   totalPrice: number;
+  status?: OrderStatus;
   driverId?: string;
   driverName?: string;
 }
