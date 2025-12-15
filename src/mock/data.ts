@@ -2,7 +2,7 @@ import { Address, Driver, Order, OrderStatus } from '../types';
 
 const baseAddress: Address = {
   id: 'addr-1',
-  main: '서울시 강남구 테헤란로 123',
+  main: '부산 해운대구 송정2로13번길 40',
   detail: '101동 1203호',
   entranceCode: '1234',
 };
@@ -16,35 +16,30 @@ export const drivers: Driver[] = [
 const now = new Date();
 const formatDate = (date: Date) => date.toISOString();
 
-const buildOrder = (id: number, status: OrderStatus, driverIndex?: number): Order => {
+const buildOrder = (id: string): Order => {
   const created = new Date(now);
-  created.setHours(created.getHours() - id);
+  created.setHours(created.getHours());
   const delivery = new Date(now);
-  delivery.setDate(delivery.getDate() + (id % 3));
-  const driver = driverIndex !== undefined ? drivers[driverIndex] : undefined;
+  delivery.setDate(delivery.getDate());
 
   return {
-    id: `order-${id}`,
-    customerId: `customer-${id}`,
-    customerName: `고객 ${id}`,
-    customerPhone: `010-0000-00${id}${id}`,
-    address: { ...baseAddress, id: `addr-${id}`, detail: `${100 + id}동 ${1000 + id}호` },
-    orderDate: formatDate(delivery),
+    id: `${id}`,
+    customerId: `customer`,
+    customerName: `정수현`,
+    customerPhone: `010-1234-5678`,
+    address: { ...baseAddress, detail: `${100}동 ${1000}호` },
     createdAt: formatDate(created),
     items: [
-      { menuId: 'menu-1', name: '김밥도시락', unitPrice: 9000, quantity: 1 + (id % 2) },
-      { menuId: 'menu-2', name: '덮밥도시락', unitPrice: 11000, quantity: 1 },
+      { menuId: 'menu-1', name: '김밥도시락', unitPrice: 6900, quantity: 3, orderDate: formatDate(delivery) },
+      { menuId: 'menu-2', name: '덮밥도시락', unitPrice: 6900, quantity: 1, orderDate: formatDate(delivery) },
     ],
-    totalPrice: 9000 * (1 + (id % 2)) + 11000,
-    status,
-    driverId: driver?.id,
-    driverName: driver?.name,
+    totalPrice: 6900 * 3 + 6900,
   };
 };
 
 export const orders: Order[] = [
-  buildOrder(1, 'PENDING'),
-  buildOrder(2, 'PREPARING', 0),
-  buildOrder(3, 'DELIVERING', 1),
-  buildOrder(4, 'COMPLETED', 2),
+  buildOrder('202512041127'),
+  buildOrder('202512141230'),
+  buildOrder('202512141304'),
+  buildOrder('202512030728'),
 ];

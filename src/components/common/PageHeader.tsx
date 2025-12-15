@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const PageHeader = ({ title, description, backHref, actions }: Props) => (
-  <div className="relative flex flex-col items-center gap-2 border-b border-gray-100 pb-4 text-center">
+  <div className="relative flex flex-col items-center gap-2 border-b border-gray-100 pb-4 text-center w-full">
     {backHref && (
       <Link href={backHref} className="absolute left-0 top-1 text-sm text-amber-700 hover:underline">
         ← 돌아가기

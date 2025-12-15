@@ -9,14 +9,12 @@ import { PageHeader } from '../../../src/components/common/PageHeader';
 const defaultProfile = {
   id: 'customer',
   phone: '010-1234-5678',
-  address: '부산광역시 연제구 중앙대로 1000',
-  addressDetail: '부산 시청 3층 민원실 앞',
+  name: '정수현'
 };
 
 export default function CustomerProfilePage() {
   const [phone, setPhone] = useState(defaultProfile.phone);
-  const [address, setAddress] = useState(defaultProfile.address);
-  const [addressDetail, setAddressDetail] = useState(defaultProfile.addressDetail);
+  const [name, setName] = useState(defaultProfile.name)
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -69,35 +67,22 @@ export default function CustomerProfilePage() {
 
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-800" htmlFor="address">
-              주소
+              이름
             </label>
             <Input
-              id="address"
-              name="address"
-              value={address}
-              onChange={(event) => setAddress(event.target.value)}
-              placeholder="부산광역시 ..."
+              id="name"
+              name="name"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              placeholder="이름"
               required
-            />
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-800" htmlFor="addressDetail">
-              상세 주소
-            </label>
-            <Input
-              id="addressDetail"
-              name="addressDetail"
-              value={addressDetail}
-              onChange={(event) => setAddressDetail(event.target.value)}
-              placeholder="상세 위치를 입력해주세요"
             />
           </div>
 
           {profileMessage && <p className="text-sm text-green-700">{profileMessage}</p>}
 
           <Button type="submit" className="w-full">
-            연락처/주소 저장
+            연락처/이름 저장
           </Button>
         </form>
       </Card>
@@ -159,6 +144,7 @@ export default function CustomerProfilePage() {
           </Button>
         </form>
       </Card>
+      <div className='w-full flex items-center justify-center'><p className='text-gray-500 text-sm underline'>로그아웃</p></div>
     </div>
   );
 }
