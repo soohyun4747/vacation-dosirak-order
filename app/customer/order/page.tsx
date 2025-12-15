@@ -56,7 +56,6 @@ export default function CustomerOrderPage() {
 		<div className='space-y-6 pb-32'>
 			<PageHeader
 				title='도시락 주문'
-				backHref='/'
 			/>
 
 			<Card className='space-y-4'>
@@ -66,7 +65,7 @@ export default function CustomerOrderPage() {
 					</div>
 					<Button variant='secondary'>주소 검색</Button>
 				</div>
-				<div className='grid gap-2 md:grid-cols-2'>
+				<div className='grid gap-3 md:grid-cols-2'>
 					<div className='flex flex-col gap-1'>
 						<p className='text-xs text-gray-600'>주소</p>
 						<Input

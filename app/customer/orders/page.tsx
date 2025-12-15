@@ -31,7 +31,6 @@ export default function CustomerOrdersPage() {
 		<div className='space-y-6'>
 			<PageHeader
 				title='주문 내역'
-				backHref='/customer/order'
 			/>
 			<Card className='divide-y divide-gray-100'>
 				{sorted.map((order) => {

@@ -13,13 +13,13 @@ export const drivers: Driver[] = [
   { id: 'driver-3', name: '박드라이버', phone: '010-5555-6666' },
 ];
 
-const now = new Date();
+const yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
 const formatDate = (date: Date) => date.toISOString();
 
 const buildOrder = (id: string): Order => {
-  const created = new Date(now);
+  const created = new Date(yesterday);
   created.setHours(created.getHours());
-  const delivery = new Date(now);
+  const delivery = new Date(yesterday);
   delivery.setDate(delivery.getDate() + 1);
 
   return {

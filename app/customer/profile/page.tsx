@@ -42,7 +42,7 @@ export default function CustomerProfilePage() {
 
   return (
     <div className="space-y-6">
-      <PageHeader title="프로필" backHref="/customer/order" />
+      <PageHeader title="프로필" />
 
       <Card className="space-y-4">
         <div>
