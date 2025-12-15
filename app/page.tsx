@@ -36,7 +36,7 @@ export default function Home() {
 	return (
 		<div className='flex flex-col justify-center items-center gap-6'>
 			<Card className='md:w-[360px] w-full'>
-				<p className='w-full text-center mb-4 text-sm font-semibold text-gray-600'>
+				<p className='w-full text-center mb-4 text-lg font-semibold text-gray-600'>
 					로그인
 				</p>
 				<form

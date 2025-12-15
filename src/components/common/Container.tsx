@@ -8,7 +8,7 @@ export const Container = ({ children }: { children: ReactNode }) => (
         <div className="absolute left-4 sm:left-6 lg:left-8 h-[42px] w-[50px]">
           <Image src={'/logo.png'} alt={'logo'} fill />
         </div>
-        <p className="self-center text-[18px] font-bold text-gray-900">부산 공공기관 도시락</p>
+        <p className="self-center font-bold text-gray-800">부산 공공기관 도시락</p>
         <div />
       </div>
     </header>
